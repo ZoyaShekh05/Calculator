@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Neon Calculator</title>
+    <link rel="stylesheet" href="output.css">
+
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+
+
+
+<body class="min-h-screen flex items-center justify-center
+    bg-[#080b16] p-4 overflow-hidden">
+
+
+    <!-- Background -->
+
+    <div class="fixed w-72 h-72
+        bg-fuchsia-600/30
+        rounded-full
+        blur-[130px]
+        -top-20 -left-20">
+    </div>
+
+    <div class="fixed w-72 h-72
+        bg-cyan-500/20
+        rounded-full
+        blur-[130px]
+        -bottom-20 -right-20">
+    </div>
+
+
+
+    <!-- Calculator -->
+
+    <div id="calculator" class="relative
+        w-full max-w-[350px]
+
+        bg-[#111522]
+
+        rounded-[28px]
+
+        p-4 sm:p-5
+
+        border border-white/10
+
+        shadow-[0_0_60px_rgba(168,85,247,0.15)]">
+
+
+        <!-- Header -->
+
+        <div class="flex items-center
+            justify-between
+            mb-4">
+
+            <div>
+
+                <p class="text-[9px]
+                    tracking-[0.3rem]
+                    text-cyan-400
+                    font-bold">
+                    SMART
+                </p>
+
+                <h1 class="text-lg
+                    font-bold
+                    text-white">
+                    Calculator
+                </h1>
+
+            </div>
+
+            <div class="w-9 h-9
+                rounded-full
+                bg-fuchsia-500/10
+                border border-fuchsia-400/20
+                flex items-center
+                justify-center
+                text-fuchsia-300">
+
+                ↶
+
+            </div>
+
+        </div>
+
+
+        <!-- History Panel -->
+
+<!-- <div
+    id="historyPanel"
+    style="display: none;"
+    class="fixed inset-0 z-50
+    bg-black/60 backdrop-blur-sm
+    items-center justify-center p-4">
+
+    <div
+        class="w-full max-w-[350px]
+        bg-[#111522]
+        border border-white/10
+        rounded-[24px]
+        p-5
+        shadow-[0_0_60px_rgba(168,85,247,0.25)]">
+
+        <div
+            class="flex items-center justify-between mb-4">
+
+            <h2 class="text-white text-lg font-bold">
+                History
+            </h2>
+
+            <button
+                id="closeHistory"
+                class="text-white/50
+                hover:text-white
+                text-xl">
+                ✕
+            </button>
+
+        </div>
+
+        <div
+            id="historyList"
+            class="max-h-[350px]
+            overflow-y-auto space-y-2">
+        </div>
+
+        <button
+            id="clearHistory"
+            class="w-full mt-4 h-11
+            rounded-xl
+            bg-red-500/10
+            border border-red-400/20
+            text-red-300
+            hover:bg-red-500/20">
+
+            Clear History
+
+        </button>
+
+    </div>
+
+</div> -->
+
+
+
+        <!-- Display -->
+
+        <div class="h-[105px]
+            bg-[#080b12]
+
+            rounded-[20px]
+
+            border border-cyan-400/10
+
+            p-4
+
+            mb-4
+
+            flex flex-col
+            justify-end
+            items-end
+
+            shadow-inner">
+
+
+            <div id="previous" class="text-cyan-300/40
+                text-xs
+                mb-1">
+            </div>
+
+
+            <div id="display" class="text-white
+    text-[42px]
+    font-bold
+    tracking-tight
+    whitespace-nowrap
+    max-w-full
+    text-right
+    overflow-hidden">
+                0
+            </div>
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div id="buttons" class="grid grid-cols-4 gap-2.5">
+
+
+            <!-- AC / Delete -->
+
+            <button class="calc-btn clear col-span-2">
+                AC
+            </button>
+
+            <button class="calc-btn delete">
+                ⌫
+            </button>
+
+            <button class="calc-btn operator">
+                ÷
+            </button>
+
+
+            <!-- 7 8 9 -->
+
+            <button class="calc-btn number">7</button>
+            <button class="calc-btn number">8</button>
+            <button class="calc-btn number">9</button>
+
+            <button class="calc-btn operator">
+                ×
+            </button>
+
+
+            <!-- 4 5 6 -->
+
+            <button class="calc-btn number">4</button>
+            <button class="calc-btn number">5</button>
+            <button class="calc-btn number">6</button>
+
+            <button class="calc-btn operator">
+                −
+            </button>
+
+
+            <!-- 1 2 3 -->
+
+            <button class="calc-btn number">1</button>
+            <button class="calc-btn number">2</button>
+            <button class="calc-btn number">3</button>
+
+            <button class="calc-btn operator">
+                +
+            </button>
+
+
+            <!-- Bottom -->
+
+            <button class="calc-btn special">
+                ±
+            </button>
+
+            <button class="calc-btn number">
+                0
+            </button>
+
+            <button class="calc-btn number">
+                .
+            </button>
+
+            <button class="calc-btn equal">
+                =
+            </button>
+
+
+            <!-- Extra -->
+
+            <!-- <button class="calc-btn history col-span-2">
+                🕘 History
+            </button> -->
+
+            <button class="calc-btn percent">
+                %
+            </button>
+
+            <!-- <button class="calc-btn percent">
+                →
+            </button> -->
+
+        </div>
+
+
+        <!-- Footer -->
+
+        <p class="text-center
+            text-[8px]
+            text-white/20
+            tracking-[0.35rem]
+            mt-4">
+            ZOYA • SMART CALCULATOR
+        </p>
+
+    </div>
+
+
+    <!-- Button CSS -->
+
+    <style>
+        .calc-btn {
+
+            height: 48px;
+
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 17px;
+            font-weight: 600;
+
+            transition:
+                0.18s ease;
+
+            user-select: none;
+        }
+
+
+        /* Numbers */
+
+        .number {
+
+            background: #1b2030;
+
+            color: #ffffff;
+
+            border: 1px solid #292f42;
+        }
+
+        .number:hover {
+
+            background: #252c40;
+
+            border-color: #6d5dfc;
+
+            color: #c4b5fd;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 15px rgba(99, 102, 241, 0.15);
+        }
+
+
+        /* Operators */
+
+        .operator {
+
+            background:
+                #27204a;
+
+            color: #c4b5fd;
+
+            border: 1px solid #49378a;
+        }
+
+        .operator:hover {
+
+            background:
+                #3a2d68;
+
+            color: #ffffff;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 15px rgba(139, 92, 246, 0.25);
+        }
+
+
+        /* AC */
+
+        .clear {
+
+            background:
+                #3b1725;
+
+            color: #fb7185;
+
+            border: 1px solid #6b263d;
+        }
+
+        .clear:hover {
+
+            background:
+                #542034;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* Delete */
+
+        .delete {
+
+            background:
+                #302118;
+
+            color: #fb923c;
+
+            border: 1px solid #5a3925;
+        }
+
+        .delete:hover {
+
+            background:
+                #4a2d1d;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* Plus Minus */
+
+        .special {
+
+            background:
+                #102d32;
+
+            color: #67e8f9;
+
+            border: 1px solid #1b555d;
+        }
+
+        .special:hover {
+
+            background:
+                #164047;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* Equal */
+
+        .equal {
+
+            background:
+                linear-gradient(135deg,
+                    #d946ef,
+                    #7c3aed);
+
+            color: white;
+
+            border: 1px solid #e879f9;
+
+            box-shadow:
+                0 7px 22px rgba(217, 70, 239, 0.3);
+        }
+
+        .equal:hover {
+
+            transform:
+                translateY(-2px) scale(1.02);
+
+            box-shadow:
+                0 10px 28px rgba(217, 70, 239, 0.45);
+        }
+
+
+        /* History */
+
+        .history {
+
+            background:
+                #151b2a;
+
+            color: #67e8f9;
+
+            border: 1px solid #26364b;
+
+            font-size: 13px;
+        }
+
+        .history:hover {
+
+            background:
+                #1d273a;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* Percentage */
+
+        .percent {
+
+            background:
+                #171d2c;
+
+            color: #a5b4fc;
+
+            border: 1px solid #29334a;
+
+            font-size: 16px;
+        }
+
+        .percent:hover {
+
+            background:
+                #222b40;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* Click */
+
+        .calc-btn:active {
+
+            transform:
+                scale(0.92);
+        }
+
+
+        /* Small screen */
+
+        @media (max-height: 650px) {
+
+            .calc-btn {
+                height: 42px;
+            }
+
+            #calculator {
+                padding: 13px;
+            }
+
+            #buttons {
+                gap: 7px;
+            }
+
+        }
+
+
+        @media (max-width: 360px) {
+
+            .calc-btn {
+                height: 44px;
+                font-size: 15px;
+            }
+
+        }
+    </style>
+    <script src="index.js"></script>
+
+</body>
+
+</html>
